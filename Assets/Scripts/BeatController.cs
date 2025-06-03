@@ -13,9 +13,12 @@ public class BeatController : MonoBehaviour
     public float sampleTime = 0;
     private float startIntervals = 0;
     private Intervals interval;
+    private float firstBeats = 0;
+    private float songLength = 0;
 
     void Start()
     {
+        songLength = (audio.clip.length - startBeats + 1);
         audio.PlayDelayed(startBeats);
         StartCoroutine(Delay(startBeats));
 
@@ -25,20 +28,32 @@ public class BeatController : MonoBehaviour
     {
         foreach(Intervals interval in intervals)
         {
-            sampleTime = (audio.timeSamples / (audio.clip.frequency * interval.GetBeatLength(bpm)));
-            interval.CheckForNewInterval(sampleTime);
+            sampleTime = ((audio.timeSamples / (audio.clip.frequency * interval.GetBeatLength(bpm))) + firstBeats);
+            
+            if(sampleTime <= songLength)
+            {
+                interval.CheckForNewInterval(sampleTime);
+            }
+            
         }
     }
 
     public IEnumerator Delay(float startBeats)
     {
-        for (startIntervals++; startIntervals < startBeats; startIntervals++)
+        foreach (Intervals interval in intervals)
         {
-            interval.CheckForNewInterval(startIntervals);
-            yield return new WaitForSeconds(interval.GetBeatLength(bpm));
+            for (startIntervals++; startIntervals < startBeats; startIntervals++)
+            {
+                //interval.CheckForNewInterval(startIntervals);
+                yield return new WaitForSeconds(interval.GetBeatLength(bpm));
+                print(firstBeats);
+                firstBeats++;
+                if (firstBeats > startBeats)
+                {
+                    StopCoroutine(Delay(startBeats));
+                }
+            }
         }
-
-        StopCoroutine(Delay(startBeats));
     }
 }
 
@@ -56,7 +71,7 @@ public class Intervals
 
     public void CheckForNewInterval(float interval)
     {
-        if (Mathf.FloorToInt(interval) != lastInterval)
+        if (Mathf.FloorToInt(interval) != lastInterval && Mathf.FloorToInt(interval) > lastInterval)
         {
             lastInterval = Mathf.FloorToInt(interval);
             trigger.Invoke();

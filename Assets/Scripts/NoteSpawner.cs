@@ -9,7 +9,10 @@ public class NoteSpawner : MonoBehaviour
     public Transform transformUp;
     public Transform transformLeft;
     public Transform transformRight;
+    public int allowedRepeats = 0;
     private int position = 0;
+    private int repeatedNotes = 0;
+    private int repeatCount = 0;
 
     void Start()
     {
@@ -26,6 +29,25 @@ public class NoteSpawner : MonoBehaviour
     public Transform randomTransform()
     {
         position = Random.Range(0, 4);
+
+        if (repeatedNotes == position && repeatCount >= allowedRepeats)
+        {
+            while(repeatedNotes == position)
+            {
+                position = Random.Range(0, 4);
+            }
+            repeatCount--;
+            repeatedNotes = position;
+        }
+        else if(repeatedNotes != position)
+        {
+            repeatedNotes = position;
+            repeatCount--;
+        }
+        else 
+        {
+            repeatCount++;
+        }
 
         switch(position)
         {

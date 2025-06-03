@@ -24,6 +24,7 @@ public class NoteController : MonoBehaviour
     {
         beatTempo = beatTempo / 60f;
         note = this.gameObject;
+        //print(this.gameObject);
     }
 
     void Update()
@@ -72,23 +73,26 @@ public class NoteController : MonoBehaviour
 
     void NoteInput()
     {
-        if (inputDown.WasPressedThisFrame())
+        if (canBePressed)
         {
-            if(inputDown.IsPressed() && buttonDown)
-            { 
-                Destroy(note);
-            }
-            else if(inputUp.IsPressed() && buttonUp)
+            if (inputDown.WasPressedThisFrame() || inputUp.WasPressedThisFrame() || inputLeft.WasPressedThisFrame() || inputRight.WasPressedThisFrame())
             {
-                Destroy(note);
-            }
-            else if(inputRight.IsPressed() && buttonRight)
-            {
-                Destroy(note);
-            }
-            else if(inputLeft.IsPressed() && buttonLeft)
-            {
-                Destroy(note);
+                if (inputDown.IsPressed() && buttonDown)
+                {
+                    Destroy(note);
+                }
+                else if (inputUp.IsPressed() && buttonUp)
+                {
+                    Destroy(note);
+                }
+                else if (inputRight.IsPressed() && buttonRight)
+                {
+                    Destroy(note);
+                }
+                else if (inputLeft.IsPressed() && buttonLeft)
+                {
+                    Destroy(note);
+                }
             }
         }
     }
