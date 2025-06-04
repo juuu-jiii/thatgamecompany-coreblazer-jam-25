@@ -41,9 +41,14 @@ public class NoteController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == tag)
+        if (other.tag == tag)
         {
             canBePressed = true;
+        }
+        else
+        {
+            print("Miss");
+            Destroy(note);
         }
     }
 
@@ -52,6 +57,11 @@ public class NoteController : MonoBehaviour
         if(other.tag == tag)
         {
             canBePressed = false;
+        }
+        else
+        {
+            print("Miss");
+            Destroy(note);
         }
     }
 
@@ -79,18 +89,22 @@ public class NoteController : MonoBehaviour
             {
                 if (inputDown.IsPressed() && buttonDown)
                 {
+                    print("Success");
                     Destroy(note);
                 }
                 else if (inputUp.IsPressed() && buttonUp)
                 {
+                    print("Success");
                     Destroy(note);
                 }
                 else if (inputRight.IsPressed() && buttonRight)
                 {
+                    print("Success");
                     Destroy(note);
                 }
                 else if (inputLeft.IsPressed() && buttonLeft)
                 {
+                    print("Success");
                     Destroy(note);
                 }
             }
@@ -102,15 +116,23 @@ public class NoteController : MonoBehaviour
         switch(position)
         {
             case 0:
+                tag = "Down";
+                moveUp = 1;
                 buttonDown = true;
                 break;
             case 1:
+                tag = "Up";
+                moveDown = 1;
                 buttonUp = true;
                 break;
             case 2:
+                tag = "Left";
+                moveRight = 1;
                 buttonLeft = true;
                 break;
             case 3:
+                tag = "Right";
+                moveLeft = 1;
                 buttonRight = true;
                 break;
             default:
@@ -118,5 +140,4 @@ public class NoteController : MonoBehaviour
                 break;
         }
     }
-
 }

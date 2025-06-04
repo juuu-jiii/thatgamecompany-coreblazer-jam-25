@@ -36,8 +36,8 @@ public class NoteSpawner : MonoBehaviour
             {
                 position = Random.Range(0, 4);
             }
-            repeatCount--;
-            repeatedNotes = position;
+            //repeatCount--;
+            //repeatedNotes = position;
         }
         else if(repeatedNotes != position)
         {

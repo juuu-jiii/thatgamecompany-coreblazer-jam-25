@@ -123,8 +123,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.21133333}
-  m_Radius: 0.5
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.25
 --- !u!114 &1714632424420973433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   moveLeft: 0
   moveRight: 0
   moveUp: 0
-  moveDown: 1
+  moveDown: 0
   tag: Button
   canBePressed: 0
   inputDown:
