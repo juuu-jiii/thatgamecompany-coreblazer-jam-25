@@ -415,7 +415,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   _spriteRenderer: {fileID: 1250093990}
-  _lerpDuration: 2
+  _lerpDuration: 5
   _leniency: 5
   NoteCount: 0
 --- !u!114 &1250093989
