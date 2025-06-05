@@ -248,3 +248,5 @@ MonoBehaviour:
   buttonLeft: 0
   buttonRight: 0
   buttonUp: 0
+  noteHit: {fileID: 5953959966820491694, guid: 9147cb382af58cc489cbdda535398f99, type: 3}
+  noteMissed: {fileID: 5607653311363893127, guid: 0e28e8f9ee1f42844902d6c2fb40861c, type: 3}
