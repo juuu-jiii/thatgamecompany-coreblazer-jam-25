@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bard of Light_0: -6389815107598289418
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using System.Linq;
 
 public class BeatController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class BeatController : MonoBehaviour
     [SerializeField] private AudioSource audio;
     [SerializeField] private Intervals[] intervals;
     [SerializeField] private float startBeats = 1;
+    [SerializeField] private BackgroundColorChanger bgColorChanger;
 
     //public Intervals interval;
     public float sampleTime = 0;
@@ -21,13 +23,17 @@ public class BeatController : MonoBehaviour
         songLength = (audio.clip.length - startBeats + 1);
         audio.PlayDelayed(startBeats);
         StartCoroutine(Delay(startBeats));
-
+        Debug.Log("note count is " + bgColorChanger.NoteCount);
     }
 
     void Update()
     {
-        foreach(Intervals interval in intervals)
+        //if ((int)(songLength / ((audio.timeSamples / (audio.clip.frequency * intervals.FirstOrDefault()?.GetBeatLength(bpm))) + firstBeats)) != int.MinValue)
+        //    bgColorChanger.NoteCount = (int)(songLength / ((audio.timeSamples / (audio.clip.frequency * intervals.FirstOrDefault()?.GetBeatLength(bpm))) + firstBeats));
+
+        foreach (Intervals interval in intervals)
         {
+            Debug.Log("number of notes is " + songLength / sampleTime);
             sampleTime = ((audio.timeSamples / (audio.clip.frequency * interval.GetBeatLength(bpm))) + firstBeats);
             
             if(sampleTime <= songLength)
@@ -46,6 +52,10 @@ public class BeatController : MonoBehaviour
             {
                 //interval.CheckForNewInterval(startIntervals);
                 yield return new WaitForSeconds(interval.GetBeatLength(bpm));
+                
+                if (bgColorChanger.NoteCount == 0 || bgColorChanger.NoteCount == int.MinValue)
+                    bgColorChanger.NoteCount = (int)(songLength / ((audio.timeSamples / (audio.clip.frequency * intervals.FirstOrDefault()?.GetBeatLength(bpm))) + firstBeats));
+
                 print(firstBeats);
                 firstBeats++;
                 if (firstBeats > startBeats)
@@ -54,6 +64,12 @@ public class BeatController : MonoBehaviour
                 }
             }
         }
+        
+    }
+
+    private void Test()
+    {
+        //audio.clip.length;
     }
 }
 
@@ -63,6 +79,7 @@ public class Intervals
     [SerializeField] private float noteLength;
     [SerializeField] private UnityEvent trigger;
     private int lastInterval = 0;
+    private int totalIntervals = 0;
 
     public float GetBeatLength(float bpm)
     {
@@ -73,6 +90,7 @@ public class Intervals
     {
         if (Mathf.FloorToInt(interval) != lastInterval && Mathf.FloorToInt(interval) > lastInterval)
         {
+            Debug.Log("total intervals is " + ++totalIntervals);
             lastInterval = Mathf.FloorToInt(interval);
             trigger.Invoke();
         }

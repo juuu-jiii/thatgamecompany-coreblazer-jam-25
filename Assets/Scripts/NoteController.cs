@@ -21,6 +21,9 @@ public class NoteController : MonoBehaviour
     public GameObject noteHit;
     public GameObject noteMissed;
     private GameObject note;
+
+    public delegate void NoteHitSuccessDelegate();
+    public static event NoteHitSuccessDelegate OnNoteHit;
     
     void Start()
     {
@@ -105,6 +108,7 @@ public class NoteController : MonoBehaviour
                     noteHitGameObject.transform.position = transform.position;
                     noteHitParticleSystem.Play();
                     Destroy(note);
+                    OnNoteHit?.Invoke();
                 }
                 else if (inputUp.IsPressed() && buttonUp)
                 {
@@ -114,6 +118,7 @@ public class NoteController : MonoBehaviour
                     noteHitGameObject.transform.position = transform.position;
                     noteHitParticleSystem.Play();
                     Destroy(note);
+                    OnNoteHit?.Invoke();
                 }
                 else if (inputRight.IsPressed() && buttonRight)
                 {
@@ -123,6 +128,7 @@ public class NoteController : MonoBehaviour
                     noteHitGameObject.transform.position = transform.position;
                     noteHitParticleSystem.Play();
                     Destroy(note);
+                    OnNoteHit?.Invoke();
                 }
                 else if (inputLeft.IsPressed() && buttonLeft)
                 {
@@ -132,6 +138,7 @@ public class NoteController : MonoBehaviour
                     noteHitGameObject.transform.position = transform.position;
                     noteHitParticleSystem.Play();
                     Destroy(note);
+                    OnNoteHit?.Invoke();
                 }
             }
         }
