@@ -22,8 +22,11 @@ public class NoteController : MonoBehaviour
     public GameObject noteMissed;
     private GameObject note;
 
-    public delegate void NoteHitSuccessDelegate();
-    public static event NoteHitSuccessDelegate OnNoteHit;
+    public delegate void NoteHitDelegate();
+    public static event NoteHitDelegate OnNoteHit;
+
+    public delegate void NoteMissedDelegate();
+    public static event NoteMissedDelegate OnNoteMissed;
     
     void Start()
     {
@@ -58,6 +61,7 @@ public class NoteController : MonoBehaviour
             noteMissedGameObject.transform.position = transform.position;
             noteMissedParticleSystem.Play();
             Destroy(note);
+            OnNoteMissed?.Invoke();
         }
     }
 
@@ -75,6 +79,7 @@ public class NoteController : MonoBehaviour
             noteMissedGameObject.transform.position = transform.position;
             noteMissedParticleSystem.Play();
             Destroy(note);
+            OnNoteMissed?.Invoke();
         }
     }
 
