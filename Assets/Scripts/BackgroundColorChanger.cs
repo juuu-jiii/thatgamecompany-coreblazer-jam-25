@@ -3,7 +3,9 @@ using UnityEngine;
 public class BackgroundColorChanger : MonoBehaviour
 {
     [SerializeField] private Gradient _backgroundColorGradient;
+    [SerializeField] private Gradient _bardGradient;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer _bardSprite;
     [SerializeField] private float _lerpDuration;
     [SerializeField] private int _leniency; // number of notes the player can miss but still manage to fully transition the background from dark to light
     private bool _animating = false;
@@ -78,6 +80,11 @@ public class BackgroundColorChanger : MonoBehaviour
             _spriteRenderer.color = Color.Lerp(
                 _backgroundColorGradient.Evaluate(_animationStartPoint),
                 _backgroundColorGradient.Evaluate(_animationEndPoint),
+                _elapsedTime / _lerpDuration);
+
+            _bardSprite.color = Color.Lerp(
+                _bardGradient.Evaluate(_animationStartPoint),
+                _bardGradient.Evaluate(_animationEndPoint),
                 _elapsedTime / _lerpDuration);
 
             if (_elapsedTime >= _lerpDuration)
