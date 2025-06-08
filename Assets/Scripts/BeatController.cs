@@ -34,7 +34,7 @@ public class BeatController : MonoBehaviour
         foreach (Intervals interval in intervals)
         {
             //Debug.Log("number of notes is " + songLength / sampleTime);
-            sampleTime = ((audio.timeSamples / (audio.clip.frequency * interval.GetBeatLength(bpm))) + interval.GetStartBeats(startBeats,firstBeats));
+            sampleTime = ((audio.timeSamples / (audio.clip.frequency * interval.GetBeatLength(bpm))) + firstBeats);
 
             //print(interval.gameObject.name);
             //print(interval.CheckTrigger());
@@ -91,29 +91,11 @@ public class Intervals
 
     public void CheckForNewInterval(float interval)
     {
-        if (Mathf.FloorToInt(interval) != lastInterval /* && Mathf.FloorToInt(interval) > lastInterval */)
+        if (Mathf.FloorToInt(interval) != lastInterval && Mathf.FloorToInt(interval) > lastInterval)
         {
             Debug.Log("total intervals is " + ++totalIntervals);
             lastInterval = Mathf.FloorToInt(interval);
             trigger.Invoke();
         }
-    }
-
-    public float GetStartBeats(float beat, float firstBeats)
-    {
-        bool test = false;
-        beat--;
-        if(firstBeats == beat)
-        {
-            test = true;
-        }
-        if(test)
-        {
-            if(firstBeats > startBeats)
-            {
-                return startBeats;
-            }
-        }
-        return firstBeats;
     }
 }
