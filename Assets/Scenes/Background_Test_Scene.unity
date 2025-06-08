@@ -2784,7 +2784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5437599440044813870, guid: 257828493f4f5d1419139ba5923af14b, type: 3}
       propertyPath: Mute
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5437599440044813870, guid: 257828493f4f5d1419139ba5923af14b, type: 3}
       propertyPath: m_PlayOnAwake
@@ -2844,7 +2844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7440067276386637111, guid: 257828493f4f5d1419139ba5923af14b, type: 3}
       propertyPath: startBeats
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7440067276386637111, guid: 257828493f4f5d1419139ba5923af14b, type: 3}
       propertyPath: audioSilent

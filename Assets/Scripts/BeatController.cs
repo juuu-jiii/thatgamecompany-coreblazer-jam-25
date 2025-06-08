@@ -26,7 +26,7 @@ public class BeatController : MonoBehaviour
         songLength = (audioBeat.clip.length - startBeats);
         audioBeat.mute = true;
         //Debug.Log(audioBeat.mute);
-        audioBeat.Play(0);
+        audioBeat.PlayDelayed(0);
         //Debug.Log(audioBeat.mute);
         //Debug.Log("Played Muted");
         //StartCoroutine(Delay(startBeats));
@@ -57,7 +57,7 @@ public class BeatController : MonoBehaviour
                 if (sampleTime >= startBeats && !audioLoop)
                 {
                     audioBeat.mute = false;
-                    audioBeat.Play(0);
+                    audioBeat.PlayDelayed(0);
                     //Debug.Log("Played Unmuted");
                     //Debug.Log(audioBeat.mute);
                 }
@@ -65,7 +65,7 @@ public class BeatController : MonoBehaviour
 
             //print(interval.gameObject.name);
             //print(interval.CheckTrigger());
-            if ((sampleTime+startBeats) <= songLength)
+            if ((sampleTime+startBeats) <= songLength && sampleTime != 0)
             {
                 interval.CheckForNewInterval(sampleTime);
             }
@@ -126,7 +126,7 @@ public class Intervals
         if (Mathf.FloorToInt(interval) != lastInterval /* && Mathf.FloorToInt(interval) > lastInterval */)
         {
             Debug.Log("total intervals is " + ++totalIntervals);
-            //Debug.Log(Mathf.FloorToInt(interval));
+            Debug.Log(Mathf.FloorToInt(interval));
             lastInterval = Mathf.FloorToInt(interval);
             trigger.Invoke();
         }
