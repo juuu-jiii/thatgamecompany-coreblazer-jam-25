@@ -54,8 +54,8 @@ public class BeatController : MonoBehaviour
             
             if(!audioLoop)
             {
-                if (bgColorChanger.NoteCount == 0 || bgColorChanger.NoteCount == int.MinValue)
-                    bgColorChanger.NoteCount = (int)(((songLength / (audioBeat.clip.frequency  * intervals.FirstOrDefault()?.GetBeatLength(bpm))) /* + firstBeats */ ));
+                //if (bgColorChanger.NoteCount == 0 || bgColorChanger.NoteCount == int.MinValue)
+                    bgColorChanger.NoteCount = 36;
             }
             
 
