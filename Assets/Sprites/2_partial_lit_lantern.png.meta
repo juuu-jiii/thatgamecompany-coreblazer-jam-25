@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      2_partial_lit_lantern_0: -1951568898301200062
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

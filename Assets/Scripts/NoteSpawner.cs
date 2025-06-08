@@ -22,6 +22,7 @@ public class NoteSpawner : MonoBehaviour
     public void SpawnNote()
     {
         newNote = Instantiate(prefabNote, randomTransform());
+        //Debug.Log("Spawned New Note");
         NoteController button = (NoteController) newNote.GetComponent(typeof(NoteController));
         button.currentButton(position);
     }

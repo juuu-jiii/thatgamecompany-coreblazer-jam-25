@@ -55,7 +55,7 @@ public class NoteController : MonoBehaviour
         }
         else
         {
-            print("Miss");
+            //print("Miss");
             GameObject noteMissedGameObject = Instantiate(noteMissed);
             ParticleSystem noteMissedParticleSystem = noteMissedGameObject.GetComponent<ParticleSystem>();
             noteMissedGameObject.transform.position = transform.position;
@@ -73,7 +73,7 @@ public class NoteController : MonoBehaviour
         }
         else
         {
-            print("Miss");
+            //print("Miss");
             GameObject noteMissedGameObject = Instantiate(noteMissed);
             ParticleSystem noteMissedParticleSystem = noteMissedGameObject.GetComponent<ParticleSystem>();
             noteMissedGameObject.transform.position = transform.position;
@@ -107,7 +107,7 @@ public class NoteController : MonoBehaviour
             {
                 if (inputDown.IsPressed() && buttonDown)
                 {
-                    print("Success");
+                    //print("Success");
                     GameObject noteHitGameObject = Instantiate(noteHit);
                     ParticleSystem noteHitParticleSystem = noteHitGameObject.GetComponent<ParticleSystem>();
                     noteHitGameObject.transform.position = transform.position;
@@ -117,7 +117,7 @@ public class NoteController : MonoBehaviour
                 }
                 else if (inputUp.IsPressed() && buttonUp)
                 {
-                    print("Success");
+                    //print("Success");
                     GameObject noteHitGameObject = Instantiate(noteHit);
                     ParticleSystem noteHitParticleSystem = noteHitGameObject.GetComponent<ParticleSystem>();
                     noteHitGameObject.transform.position = transform.position;
@@ -127,7 +127,7 @@ public class NoteController : MonoBehaviour
                 }
                 else if (inputRight.IsPressed() && buttonRight)
                 {
-                    print("Success");
+                    //print("Success");
                     GameObject noteHitGameObject = Instantiate(noteHit);
                     ParticleSystem noteHitParticleSystem = noteHitGameObject.GetComponent<ParticleSystem>();
                     noteHitGameObject.transform.position = transform.position;
@@ -137,7 +137,7 @@ public class NoteController : MonoBehaviour
                 }
                 else if (inputLeft.IsPressed() && buttonLeft)
                 {
-                    print("Success");
+                    //print("Success");
                     GameObject noteHitGameObject = Instantiate(noteHit);
                     ParticleSystem noteHitParticleSystem = noteHitGameObject.GetComponent<ParticleSystem>();
                     noteHitGameObject.transform.position = transform.position;
