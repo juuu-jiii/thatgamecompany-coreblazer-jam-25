@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class BeatController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class BeatController : MonoBehaviour
     [SerializeField] private float startBeats = 1;
     [SerializeField] private BackgroundColorChanger bgColorChanger;
     [SerializeField] private bool audioLoop = false;
+    [SerializeField] private ImageColorChanger _imageColorChanger;
     //[SerializeField] private bool changeBg = false;
 
     //public Intervals interval;
@@ -27,10 +29,16 @@ public class BeatController : MonoBehaviour
         audioBeat.mute = true;
         //Debug.Log(audioBeat.mute);
         audioBeat.PlayDelayed(0);
+        ImageColorChanger.OnFinishFading += GoToGameOverScreen;
         //Debug.Log(audioBeat.mute);
         //Debug.Log("Played Muted");
         //StartCoroutine(Delay(startBeats));
         //Debug.Log("note count is " + bgColorChanger.NoteCount);
+    }
+
+    private void OnDestroy()
+    {
+        ImageColorChanger.OnFinishFading -= GoToGameOverScreen;
     }
 
     void Update()
@@ -75,6 +83,16 @@ public class BeatController : MonoBehaviour
             }
             
         }
+
+        if (!audioBeat.isPlaying)
+        {
+            _imageColorChanger.Play();
+        }
+    }
+
+    private void GoToGameOverScreen()
+    {
+        SceneManager.LoadSceneAsync("Game_Over_Scene");
     }
 
     /*
