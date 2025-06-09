@@ -4,12 +4,15 @@ public class BackgroundColorChanger : MonoBehaviour
 {
     [SerializeField] private Gradient _backgroundColorGradient;
     [SerializeField] private Gradient _bardGradient;
+    [SerializeField] private Sprite[] _lanternSprites;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private SpriteRenderer _bardSprite;
+    [SerializeField] private SpriteRenderer _lanternSprite;
     [SerializeField] private float _lerpDuration;
     [SerializeField] private int _leniency; // number of notes the player can miss but still manage to fully transition the background from dark to light
     private bool _animating = false;
     private float _elapsedTime = 0f;
+    [SerializeField] private int _lanternCounter = 0;
 
     // the following fields are normalized to range [0, 1]
     private float _animationStartPoint; // as long as animation is playing, this stays constant
@@ -53,6 +56,8 @@ public class BackgroundColorChanger : MonoBehaviour
         {
             Play();
         }
+
+        _lanternCounter++;
     }
 
     // Update is called once per frame
@@ -86,6 +91,23 @@ public class BackgroundColorChanger : MonoBehaviour
                 _bardGradient.Evaluate(_animationStartPoint),
                 _bardGradient.Evaluate(_animationEndPoint),
                 _elapsedTime / _lerpDuration);
+
+            if(_lanternCounter >= 9 && _lanternCounter < 18)
+            {
+                _lanternSprite.sprite = _lanternSprites[1];
+            }
+            else if(_lanternCounter >= 18 && _lanternCounter < 27)
+            {
+                _lanternSprite.sprite = _lanternSprites[2];
+            }
+            else if (_lanternCounter >= 27)
+            {
+                _lanternSprite.sprite = _lanternSprites[3];
+            }
+            else
+            {
+                _lanternSprite.sprite = _lanternSprites[0];
+            }
 
             if (_elapsedTime >= _lerpDuration)
             {
